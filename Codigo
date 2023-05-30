@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <math.h>
+
+// adição
+float adicao(float num1, float num2) {
+    return num1 + num2;
+}
+
+// subtração
+float subtracao(float num1, float num2) {
+    return num1 - num2;
+}
+
+// multiplicação
+float multiplicacao(float num1, float num2) {
+    return num1 * num2;
+}
+
+// divisão
+float divisao(float num1, float num2) {
+    return num1 / num2;
+}
+
+// hipotenusa
+float hipotenusa(float cateto1, float cateto2) {
+    return sqrt(cateto1 * cateto1 + cateto2 * cateto2);
+}
+
+// fatorial
+int fatorial(int num) {
+    if (num == 0 || num == 1) {
+        return 1;
+    } else {
+        return num * fatorial(num - 1);
+    }
+}
+
+// soma dos elementos de um vetor
+int somaVetor(int vetor[], int tamanho) {
+    int soma = 0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += vetor[i];
+    }
+    return soma;
+}
+
+// multiplicação de matrizes
+void multiplicacaoMatriz(int matriz1[][3], int matriz2[][3], int resultado[][3]) {
+    int i, j, k;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            resultado[i][j] = 0;
+            for (k = 0; k < 3; k++) {
+                resultado[i][j] += matriz1[i][k] * matriz2[k][j];
+            }
+        }
+    }
+}
+
+// Função principal
+int main() {
+    float num1, num2;
+    int opcao, vetor[100], tamanho, i;
+    int matriz1[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int matriz2[3][3] = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
+    int resultado[3][3];
+
+    printf("Selecione a operacao:\n");
+    printf("1 - Adicao\n");
+    printf("2 - Subtracao\n");
+    printf("3 - Multiplicacao\n");
+    printf("4 - Divisao\n");
+    printf("5 - Hipotenusa\n");
+    printf("6 - Fatorial\n");
+    printf("7 - Soma dos elementos de um vetor\n");
+    printf("8 - Multiplicacao de matrizes\n");
+    scanf("%d", &opcao);
+
+    switch (opcao) {
+        case 1:
+            printf("Digite dois numeros: ");
+            scanf("%f%f", &num1, &num2);
+            printf("Resultado: %.2f\n", adicao(num1, num2));
+            break;
+        case 2:
+            printf("Digite dois numeros: ");
+            scanf("%f%f", &num1, &num2);
+            printf("Resultado: %.2f\n", subtracao(num1, num2));
+            break;
+        case 3:
+            printf("Digite dois numeros: ");
+            scanf("%f%f", &num1, &num2);
+            printf("Resultado: %.2f\n", multiplicacao(num1, num2));
+            break;
+        case 4:
+            printf("Digite dois numeros: ");
+            scanf("%f%f", &num1, &num2);
+            printf("Resultado: %.2f\n", divisao(num1, num2));
+            break;
+        case 5:
+            printf("Digite os valores dos catetos: ");
+            scanf("%f%f", &num1, &num2);
+            printf("Resultado: %.2f\n", hipotenusa(num1, num2));
+            break;
+        case 6:
+            printf("Digite um numero inteiro: ");
+            scanf("%d", &i);
+            printf("Resultado: %d\n", fatorial(i));
+
+            
+            break;
+        case 7:
+            printf("Digite o tamanho do vetor: ");
+            scanf("%d", &tamanho);
+            printf("Digite os elementos do vetor: ");
+            for (i = 0; i < tamanho; i++) {
+                scanf("%d", &vetor[i]);
+            }
+            printf("Resultado: %d\n", somaVetor(vetor, tamanho));
+            break;
+        case 8:
+            multiplicacaoMatriz(matriz1, matriz2, resultado);
+            printf("Resultado:\n");
+            for (i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    printf("%d ", resultado[i][j]);
+                }
+                printf("\n");
+            }
+            break;
+        default:
+            printf("Opcao invalida.\n");
+            break;
+    }
+
+    return 0;
+}
